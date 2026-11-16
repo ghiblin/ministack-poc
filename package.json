@@ -1,0 +1,25 @@
+{
+  "name": "ministack-poc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run",
+    "test:integration": "vitest run --config vitest.config.ts",
+    "build": "esbuild src/lambda.ts --bundle --platform=node --target=node22 --format=esm --external:@aws-sdk/* --outfile=dist/lambda.mjs",
+    "package": "npm run build && cd dist && zip -q ../function.zip lambda.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1169.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "esbuild": "^0.28.2",
+    "testcontainers": "^12.2.1",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.0"
+  }
+}
